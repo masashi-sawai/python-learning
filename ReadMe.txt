@@ -1,1 +1,1 @@
-Pythonの学習用
+Pythonの学習用に作成
