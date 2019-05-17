@@ -90,7 +90,7 @@ with open('./test_out.csv', 'w') as f:
     # f.write("女性の確率（全文判定）")
     f.write("\n")
 
-f = _csv_load("./test.csv")
+f = _csv_load("./check_data.csv")
 
 for row in f:
     partial_probability = partial_match(row['名'][-1])
