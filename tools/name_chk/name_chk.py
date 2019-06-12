@@ -3,6 +3,7 @@ import pickle
 import pandas
 import time
 import sys
+from tqdm import tqdm
 
 
 def partial_match(str_name):
@@ -31,10 +32,10 @@ def partial_match(str_name):
     # else:
     #    print('
     #    print('>> ' + str_name + 'さんは判定不能')
-    elapsed_time = time.time() - start
-    ti = "elapsed_time:{0}".format(elapsed_time) + "[sec]"
-    sys.stdout.write("\r%s" % ti)
-    sys.stdout.flush()
+    #elapsed_time = time.time() - start
+    #ti = "elapsed_time:{0}".format(elapsed_time) + "[sec]"
+    #sys.stdout.write("\r%s" % ti)
+    # sys.stdout.flush()
 
     return m_p, w_p
 
@@ -75,37 +76,40 @@ def _csv_load(file):
 
 
 # メイン処理
-partial_probability = {}
-perfect_probability = {}
+def main():
+    partial_probability = {}
+    perfect_probability = {}
 
-with open('./test_out.csv', 'w') as f:
-    f.write("名")
-    f.write(",")
-    f.write("男性の確率（末尾判定）")
-    f.write(",")
-    f.write("女性の確率（末尾判定）")
-    # f.write(",")
-    # f.write("男性の確率（全文判定）")
-    # f.write(",")
-    # f.write("女性の確率（全文判定）")
-    f.write("\n")
-
-f = _csv_load("./check_data.csv")
-
-for row in f:
-    partial_probability = partial_match(row['名'][-1])
-    #perfect_probability = perfect_match(row['名'])
-    with open('./test_out.csv', 'a') as f:
-        f.write(row['名'])
+    with open('./test_out.csv', 'w') as f:
+        f.write("名")
         f.write(",")
-        f.write(str(partial_probability[0]))
+        f.write("男性の確率（末尾判定）")
         f.write(",")
-        f.write(str(partial_probability[1]))
+        f.write("女性の確率（末尾判定）")
         # f.write(",")
-        # f.write(str(perfect_probability[0]))
+        # f.write("男性の確率（全文判定）")
         # f.write(",")
-        # f.write(str(perfect_probability[1]))
+        # f.write("女性の確率（全文判定）")
         f.write("\n")
+
+    f = _csv_load("./check_data.csv")
+
+    for row in tqdm(f):
+        partial_probability = partial_match(row['名'][-1])
+        #perfect_probability = perfect_match(row['名'])
+        with open('./test_out.csv', 'a') as f:
+            f.write(row['名'])
+            f.write(",")
+            f.write(str(partial_probability[0]))
+            f.write(",")
+            f.write(str(partial_probability[1]))
+            # f.write(",")
+            # f.write(str(perfect_probability[0]))
+            # f.write(",")
+            # f.write(str(perfect_probability[1]))
+            f.write("\n")
 
 # partial_match
 # perfect_matching
+
+main()
