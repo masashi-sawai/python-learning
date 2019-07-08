@@ -2,6 +2,7 @@
 
 import numpy as np
 import glob
+import sys
 from PIL import Image
 
 
@@ -31,9 +32,28 @@ def main(x, y, type_str, path, file_type):
     print('OK：' + str(ok_cnt))
     print('NG：' + str(ng_cnt))
 
-x = 140
-y = 95
-path = 'C:/Users/sawai/Test'
-file_type = '/*.gif'
-type_str = '# Test_Image'
+args = sys.argv
+err = ''
+if len(args) == 5:
+    if args[1].isdigit():
+        x = int(args[1])
+    else:
+        err += 'x,'
+    if args[2].isdigit():
+        y = int(args[2])
+    else:
+        err += 'y,'
+    path = args[3]
+    file_type = args[4]
+    if err != '':
+        print('Input Error:' + err)
+        exit()
+    type_str = '# Test_Image'
+else:
+    x = 140
+    y = 95
+    path = 'C:/Users/sawai/Test'
+    file_type = '/*.gif'
+    type_str = '# Test_Image'
+print(err)
 main(x, y, type_str, path, file_type)
