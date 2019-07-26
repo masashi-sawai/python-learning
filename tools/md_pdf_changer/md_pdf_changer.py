@@ -3,19 +3,21 @@ import pdfkit
 import glob
 import winreg
 
-path = "./"  # ここに変換対象ディレクトリを指定
-files = glob.glob(path + "input.md")
-for f in files:
-    # Markdownのテキストを読む
-    with open(f, "rt", encoding="utf-8") as fp:
-        text = fp.read()
-        # HTMLに変換
-        md = markdown.Markdown()
+
+def main():
+    path = "./"
+    files = glob.glob(path + "input.md")
+
+    for f in files:
+        with open(f, "rt", encoding="utf-8") as fp:
+            text = fp.read()
+            # HTMLに変換
+            md = markdown.Markdown()
         body = md.convert(text)
         html = '<html lang="ja"><meta charset="utf-8"><body>'
-        html += '<style> body { font-size: 3em; } </style>'
+        html += '<style> body { font-size: 1rem; } </style>'
         html += body + '</body></html>'
-    # PDFで出力
+
     outfile = f + ".pdf"
     print(outfile)
 
@@ -29,4 +31,6 @@ for f in files:
             pdfkit.from_string(html, outfile)
     except FileNotFoundError:
         pass
-print("ok")
+
+if __name__ == '__main__':
+    main()
