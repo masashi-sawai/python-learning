@@ -11,12 +11,11 @@ def main():
     for f in files:
         with open(f, "rt", encoding="utf-8") as fp:
             text = fp.read()
-            # HTMLに変換
             md = markdown.Markdown()
-        body = md.convert(text)
-        html = '<html lang="ja"><meta charset="utf-8"><body>'
-        html += '<style> body { font-size: 1rem; } </style>'
-        html += body + '</body></html>'
+            body = md.convert(text)
+            html = '<html lang="ja"><meta charset="utf-8"><body>'
+            html += '<style> body { font-size: 1rem; } </style>'
+            html += body + '</body></html>'
 
     outfile = f + ".pdf"
     print(outfile)
