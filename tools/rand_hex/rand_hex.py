@@ -19,9 +19,14 @@ def main(order):
     print('-------------------------')
     print(' ■32桁の乱数生成 {0}件'.format(order))
     print('-------------------------')
+    param = ''
+    output = ''
+    cnt = 0
     for cnt in range(order):
-        str = _rand_hex(32)
-        print(str)
+        param = _rand_hex(32)
+        print(param)
+        output += param + '\n'
+    return output
 
 
 def _rand_hex(length):
@@ -35,4 +40,6 @@ def _rand_hex(length):
 if __name__ == '__main__':
     args = sys.argv
     order = chk(args)
-    main(order)
+    output = main(order)
+    with open("hoge.txt", "w") as f:
+        f.write(output)
