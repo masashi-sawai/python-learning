@@ -22,8 +22,11 @@ def main():
         lottery_list = _del_win(lottery_list, win_list)
         win = win - len(win_list)
 
-    print('--------------------')
-    print(win_list)
+    print('---------')
+    print(' 当選者 ')
+    print('---------')
+    for row in win_list:
+        print(row[0] + ',' + row[1])
 
 
 def _check_input(args):
@@ -49,7 +52,7 @@ def _csv_read():
 def _get_input(f):
     lottery_list = []
     for row in f:
-        lottery_list.append(row[0])
+        lottery_list.append([row[0], row[1]])
     return lottery_list
 
 
