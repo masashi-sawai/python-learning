@@ -15,7 +15,6 @@ def partial_match(str_name):
     f = _csv_load("./test_dict_last2.csv")
     start = time.time()
     for row in f:
-        # print(row)
         if str_name in row['名']:
             #print(' * ' + row['名'] + ':' + row['性別'])
             if row['性別'] == '男性':
