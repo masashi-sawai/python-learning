@@ -30,7 +30,7 @@ def main():
         print(row[0] + ',' + row[1])
         out_str = out_str + row[0] + ',' + row[1] + '\n'
 
-    path_w = './out.txt'
+    path_w = './out.csv'
     with open(path_w, mode='w') as f:
         f.write(out_str)
 
