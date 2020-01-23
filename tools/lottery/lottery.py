@@ -25,8 +25,14 @@ def main():
         win = win - len(list_win)
 
     # 当選者出力
+    out_str = ''
     for row in list_win:
         print(row[0] + ',' + row[1])
+        out_str = out_str + row[0] + ',' + row[1] + '\n'
+
+    path_w = './out.txt'
+    with open(path_w, mode='w') as f:
+        f.write(out_str)
 
 
 # 抽選対象データ（csv）の読み込み
