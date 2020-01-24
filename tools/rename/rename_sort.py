@@ -10,7 +10,7 @@ import datetime
 today = datetime.datetime.utcnow().date()
 now = datetime.datetime.now().time()
 
-dr_org = os.getcwd() + '/test_images/'
+dr_org = os.getcwd() + '/Image/'
 dr = os.getcwd() + '\\' + \
     dr_org.split('/')[-2] + '_' + str(today) + '_' + str(now).replace(':', '')
 shutil.copytree(dr_org, dr)
